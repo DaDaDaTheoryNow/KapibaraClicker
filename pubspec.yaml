@@ -40,6 +40,8 @@ dependencies:
   provider: ^6.0.2
   fluttertoast: ^8.0.9
   shared_preferences: ^2.0.13
+  flutter_native_splash: ^2.2.1
+  page_transition: "^2.0.5"
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +56,11 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+# SplashScreen
+flutter_native_splash:
+  background_image: assets/background_image_splash.png
+  image: assets/splash.png
 
 # The following section is specific to Flutter.
 flutter:
