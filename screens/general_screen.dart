@@ -38,10 +38,22 @@ class Gscreen extends StatefulWidget {
 }
 
 int _myCount = 0;
-// блок +1
+
+// блок +
 bool Getplus1 = false;
+bool Getplus2 = false;
+bool Getplus3 = false;
+bool Getplus4 = false;
+bool Getplus5 = false;
+// конец блок +
+
+// блок -
 bool Getminus1 = false;
-// конец блок +1
+bool Getminus2 = false;
+bool Getminus3 = false;
+bool Getminus4 = false;
+bool Getminus5 = false;
+// конец блок -
 bool progress_start = false;
 
 class _GscreenState extends State<Gscreen> {
@@ -98,7 +110,15 @@ class _GscreenState extends State<Gscreen> {
   getCount() async {
     final prefs = await SharedPreferences.getInstance();
     Getplus1 = prefs.getBool("myPlus1")!;
+    Getplus2 = prefs.getBool("myPlus2")!;
+    Getplus3 = prefs.getBool("myPlus3")!;
+    Getplus4 = prefs.getBool("myPlus4")!;
+    Getplus5 = prefs.getBool("myPlus5")!;
     Getminus1 = prefs.getBool("myMinus1")!;
+    Getminus2 = prefs.getBool("myMinus2")!;
+    Getminus3 = prefs.getBool("myMinus3")!;
+    Getminus4 = prefs.getBool("myMinus4")!;
+    Getminus5 = prefs.getBool("myMinus5")!;
     progress_start = prefs.getBool("Progress_start")!;
 
     setState(() {
@@ -110,11 +130,37 @@ class _GscreenState extends State<Gscreen> {
   void plus() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
+      if (progress_start == false) {
+        Fluttertoast.showToast(
+            msg: "Вы не начали прогресс!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+
       _myCount = prefs.getInt("myCount")!;
+
+      if (Getplus1 == false &&
+          Getplus2 == false &&
+          Getplus3 == false &&
+          Getplus4 == false &&
+          Getplus5 == false) {
+        _myCount += 1;
+      }
       if (Getplus1 == true) {
         _myCount += 2;
-      } else if (Getplus1 == false) {
-        _myCount += 1;
+      }
+      if (Getplus2 == true) {
+        _myCount += 4;
+      }
+      if (Getplus3 == true) {
+        _myCount += 10;
+      }
+      if (Getplus4 == true) {
+        _myCount += 15;
       }
       saveCount();
     });
@@ -123,11 +169,36 @@ class _GscreenState extends State<Gscreen> {
   void minus() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
+      if (progress_start == false) {
+        Fluttertoast.showToast(
+            msg: "Вы не начали прогресс!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+
       _myCount = prefs.getInt("myCount")!;
+      if (Getminus1 == false &&
+          Getminus2 == false &&
+          Getminus3 == false &&
+          Getminus4 == false &&
+          Getminus5 == false) {
+        _myCount -= 1;
+      }
       if (Getminus1 == true) {
         _myCount -= 2;
-      } else if (Getminus1 == false) {
-        _myCount -= 1;
+      }
+      if (Getminus2 == true) {
+        _myCount -= 4;
+      }
+      if (Getminus3 == true) {
+        _myCount -= 10;
+      }
+      if (Getminus4 == true) {
+        _myCount -= 15;
       }
       saveCount();
     });
@@ -137,6 +208,21 @@ class _GscreenState extends State<Gscreen> {
     final prefs = await SharedPreferences.getInstance();
 
     setState(() async {
+      prefs.setInt("myCount", 0);
+      _myCount = prefs.getInt("myCount")!;
+
+      // блок achiv -
+      prefs.setBool("myCapibaraMinus", false);
+      prefs.setBool("myCapibaraMinus_finish_tw", false);
+      prefs.setBool("myCapibaraMinus_join", true);
+      // конец блок achiv -
+
+      // блок achiv +
+      prefs.setBool("myCapibaraPlus", false);
+      prefs.setBool("myCapibaraPlus_finish_tw", false);
+      prefs.setBool("myCapibaraPlus_join", true);
+      // конец блок achiv +
+
       // блок +1
       prefs.setBool("myPlus1", false);
       Getplus1 = prefs.getBool("myPlus1")!;
@@ -145,19 +231,98 @@ class _GscreenState extends State<Gscreen> {
       prefs.setBool("myPlus1_join", true);
       prefs.setBool("myPlus1_text_equip", false);
       // конец блок +1
-      prefs.setInt("myCount", 0);
-      _myCount = prefs.getInt("myCount")!;
+
+      // блок +2
+      prefs.setBool("myPlus2", false);
+      Getplus1 = prefs.getBool("myPlus2")!;
+      prefs.setBool("myPlus2_text", false);
+      prefs.setBool("myPlus2_textw", false);
+      prefs.setBool("myPlus2_join", true);
+      prefs.setBool("myPlus2_text_equip", false);
+      // конец блок +2
+
+      // блок +3
+      prefs.setBool("myPlus3", false);
+      Getplus1 = prefs.getBool("myPlus3")!;
+      prefs.setBool("myPlus3_text", false);
+      prefs.setBool("myPlus3_textw", false);
+      prefs.setBool("myPlus3_join", true);
+      prefs.setBool("myPlus3_text_equip", false);
+      // конец блок +3
+
+      // блок +4
+      prefs.setBool("myPlus4", false);
+      Getplus4 = prefs.getBool("myPlus4")!;
+      prefs.setBool("myPlus4_text", false);
+      prefs.setBool("myPlus4_textw", false);
+      prefs.setBool("myPlus4_join", true);
+      prefs.setBool("myPlus4_text_equip", false);
+      // конец блок +4
+
+      // блок +5
+      prefs.setBool("myPlus5", false);
+      Getplus5 = prefs.getBool("myPlus5")!;
+      prefs.setBool("myPlus5_text", false);
+      prefs.setBool("myPlus5_textw", false);
+      prefs.setBool("myPlus5_join", true);
+      prefs.setBool("myPlus5_text_equip", false);
+      // конец блок +5
 
       // блок -1
       prefs.setBool("myMinus1", false);
-      Getplus1 = prefs.getBool("myPlus1")!;
+      Getminus1 = prefs.getBool("myMinus1")!;
       prefs.setBool("myMinus1_text", false);
       prefs.setBool("myMinus1_textw", false);
       prefs.setBool("myMinus1_join", true);
       prefs.setBool("myMinus1_text_equip", false);
       // конец блок -1
 
+      // блок -2
+      prefs.setBool("myMinus2", false);
+      Getminus1 = prefs.getBool("myPlus2")!;
+      prefs.setBool("myMinus2_text", false);
+      prefs.setBool("myMinus2_textw", false);
+      prefs.setBool("myMinus2_join", true);
+      prefs.setBool("myMinus2_text_equip", false);
+      // конец блок -2
+
+      // блок -3
+      prefs.setBool("myMinus3", false);
+      Getminus1 = prefs.getBool("myMinus3")!;
+      prefs.setBool("myMinus3_text", false);
+      prefs.setBool("myMinus3_textw", false);
+      prefs.setBool("myMinus3_join", true);
+      prefs.setBool("myMinus3_text_equip", false);
+      // конец блок -3
+
+      // блок -4
+      prefs.setBool("myMinus4", false);
+      Getminus1 = prefs.getBool("myMinus4")!;
+      prefs.setBool("myMinus4_text", false);
+      prefs.setBool("myMinus4_textw", false);
+      prefs.setBool("myMinus4_join", true);
+      prefs.setBool("myMinus4_text_equip", false);
+      // конец блок -4
+
+      // блок -5
+      prefs.setBool("myMinus5", false);
+      Getminus1 = prefs.getBool("myMinus5")!;
+      prefs.setBool("myMinus5_text", false);
+      prefs.setBool("myMinus5_textw", false);
+      prefs.setBool("myMinus5_join", true);
+      prefs.setBool("myMinus5_text_equip", false);
+      // конец блок -5
+
       getCount();
+    });
+  }
+
+  setProgress() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() async {
+      progress_start = await prefs.setBool("myProgress", true);
+      progress_start = prefs.getBool("myProgress")!;
     });
   }
 
@@ -197,6 +362,8 @@ class _GscreenState extends State<Gscreen> {
               onPressed: () {
                 gui_start_help();
                 setState(() {
+                  progress_start = true;
+                  setProgress();
                   setProgress_del();
                 });
               },
@@ -268,6 +435,17 @@ class _GscreenState extends State<Gscreen> {
               highlightColor: Colors.grey,
               color: Color.fromARGB(255, 95, 221, 137),
               onPressed: () async {
+                if (progress_start == false) {
+                  Fluttertoast.showToast(
+                      msg: "Вы не начали прогресс!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                }
+
                 final prefs = await SharedPreferences.getInstance();
                 way_select_evil = await prefs.getBool('evil_save')!;
                 way_select_kind = await prefs.getBool('kind_save')!;
@@ -285,17 +463,6 @@ class _GscreenState extends State<Gscreen> {
                   Navigator.pushNamedAndRemoveUntil(
                       context, '/shop', (route) => false);
                   print('хз');
-                }
-
-                if (progress_start = false) {
-                  Fluttertoast.showToast(
-                      msg: "Вы не начали прогресс!",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.CENTER,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.red,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
                 }
               },
               child: Text(
