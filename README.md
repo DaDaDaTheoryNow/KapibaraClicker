@@ -1,5 +1,5 @@
 # KapibaraClicker
-***This is my first project, sorry about the eyes...![FinishAchiv_screen](https://user-images.githubusercontent.com/105795587/170366211-ebda220f-acd6-4e1a-b321-ed6b2706847b.png)
+***This is my first project, sorry about the eyes...***![FinishAchiv_screen](https://user-images.githubusercontent.com/105795587/170366211-ebda220f-acd6-4e1a-b321-ed6b2706847b.png)
 ![general_screen](https://user-images.githubusercontent.com/105795587/170366218-f63e9901-ab38-4c10-a838-c6ad1f31556f.png)
 
 
